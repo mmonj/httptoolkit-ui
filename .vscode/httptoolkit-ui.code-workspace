@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"editor.formatOnSave": false,
+		"files.insertFinalNewline": false,
+		"[javascript]": {
+			"editor.tabSize": 4,
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.codeActionsOnSave": {
+			  "source.fixAll.eslint": false,
+			  "source.organizeImports": false
+			}
+		  },
+		  "[javascriptreact]": {
+			"editor.tabSize": 4,
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.codeActionsOnSave": {
+			  "source.fixAll.eslint": false,
+			  "source.organizeImports": false
+			}
+		  },
+		  "[typescript]": {
+			"editor.tabSize": 4,
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.codeActionsOnSave": {
+			  "source.fixAll.eslint": false,
+			  "source.organizeImports": false
+			}
+		  },
+		  "[typescriptreact]": {
+			"editor.tabSize": 4,
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.codeActionsOnSave": {
+			  "source.fixAll.eslint": false,
+			  "source.organizeImports": false
+			}
+		  },
+	}
+}
