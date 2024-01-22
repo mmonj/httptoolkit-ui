@@ -8,6 +8,7 @@ import { AccountStore } from '../../model/account/account-store';
 import { UiStore } from '../../model/ui/ui-store';
 import { HttpExchange } from '../../model/http/exchange';
 import {
+    editDescription,
     exportHar,
     generateCodeSnippet,
     getCodeSnippetFormatKey,
@@ -37,6 +38,11 @@ export class ViewEventContextMenuBuilder {
             type: 'option',
             label: 'Delete',
             callback: this.onDelete
+        },
+        EditDescription: {
+            type: 'option',
+            label: 'Edit Description',
+            callback: editDescription
         }
     } as const;
 
@@ -51,6 +57,7 @@ export class ViewEventContextMenuBuilder {
             if (event.isHttp()) {
                 this.uiStore.handleContextMenuEvent(mouseEvent, [
                     this.BaseOptions.Pin,
+                    this.BaseOptions.EditDescription,
                     {
                         type: 'option',
                         label: 'Copy Request URL',

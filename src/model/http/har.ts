@@ -27,8 +27,8 @@ import { getStatusMessage } from './http-docs';
 import { StreamMessage } from '../events/stream-message';
 import { QueuedEvent } from '../events/events-store';
 
-// We only include request/response bodies that are under 500KB
-const HAR_BODY_SIZE_LIMIT = 500000;
+// Discard request/response bodies under 4 MB
+const HAR_BODY_SIZE_LIMIT = 4_000_000;
 const UTF8Decoder = new TextDecoder('utf8', { fatal: true });
 
 export interface Har extends HarFormat.Har {
@@ -71,6 +71,7 @@ export interface HarEntry extends HarFormat.Entry {
         timestamp?: number;
     } | 'aborted'
     _pinned?: true;
+    description?: string;
 }
 
 export interface HarWebSocketMessage {
@@ -378,6 +379,7 @@ async function generateHarHttpEntry(
         : -1;
 
     return {
+        description: exchange.request.description,
         pageref: exchange.request.source.summary,
         startedDateTime: dateFns.format(startTime),
         time: totalDuration,
@@ -521,6 +523,7 @@ export async function parseHar(harContents: unknown): Promise<ParsedHar> {
 
 
         const request = parseHarRequest(id, entry.request, timingEvents);
+        request.description = entry.description;
 
         events.push({
             type: isWebSocket ? 'websocket-request' : 'request',

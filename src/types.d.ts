@@ -44,7 +44,7 @@ import type { ViewableContentType } from './model/events/content-types';
 // These are the HAR types as returned from parseHar(), not the raw types as defined in the HAR itself
 export type HarBody = { encodedLength: number, decoded: Buffer };
 export type HarRequest = Omit<MockttpCompletedRequest, 'body' | 'timingEvents' | 'matchedRuleId'> &
-    { body: HarBody; timingEvents: TimingEvents, matchedRuleId: false };
+    { body: HarBody; timingEvents: TimingEvents, matchedRuleId: false, description?: string };
 export type HarResponse = Omit<MockttpResponse, 'body' | 'timingEvents'> &
     { body: HarBody; timingEvents: TimingEvents };
 
@@ -125,7 +125,8 @@ export type HtkRequest = Omit<InputRequest, 'body' | 'path'> & {
     source: TrafficSource,
     contentType: ViewableContentType,
     cache: Map<symbol, unknown>,
-    body: MessageBody
+    body: MessageBody,
+    description?: string,
 };
 
 export type HtkResponse = Omit<InputResponse, 'body'> & {

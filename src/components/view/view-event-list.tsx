@@ -176,6 +176,12 @@ const PathAndQuery = styled(Column)`
     flex-basis: 1000px;
 `;
 
+const Description = styled(Column)`
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: 750px;
+`;
+
 // Match Method + Status, but shrink right margin slightly so that
 // spinner + "WebRTC Media" fits OK.
 const EventTypeColumn = styled(Column)`
@@ -461,6 +467,7 @@ const ExchangeRow = inject('uiStore')(observer(({
         <PathAndQuery title={ request.parsedUrl.pathname + request.parsedUrl.search }>
             { request.parsedUrl.pathname + request.parsedUrl.search }
         </PathAndQuery>
+        <Description title={request.description}>{request.description}</Description>
     </TrafficEventListRow>;
 }));
 
@@ -719,6 +726,7 @@ export class ViewEventList extends React.Component<ViewEventListProps> {
                 <Source>Source</Source>
                 <Host>Host</Host>
                 <PathAndQuery>Path and query</PathAndQuery>
+                <Description>Description</Description>
             </TableHeader>
 
             {

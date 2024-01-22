@@ -22,6 +22,15 @@ export const exportHar = async (exchange: HttpExchange) => {
     saveFile(filename, 'application/har+json;charset=utf-8', harContent);
 };
 
+export function editDescription(exchange: HttpExchange): void {
+    const description = prompt("Write a description: ", exchange.request.description);
+    if (description === null) {
+        return;
+    }
+
+    exchange.request.description = description.trim();
+}
+
 export function generateCodeSnippet(
     exchange: HttpExchange,
     snippetFormat: SnippetOption,
